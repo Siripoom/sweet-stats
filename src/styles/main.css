@@ -1,0 +1,15 @@
+/* main.module.css */
+.popup {
+  animation: popUp 0.5s ease-out forwards;
+}
+
+@keyframes popUp {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

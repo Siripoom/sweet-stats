@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { db } from "../../firebaseConfig";
 import { collection, query, where, getDocs } from "firebase/firestore";
+import { motion } from "framer-motion";
 
 export default function HomePage() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -28,26 +29,29 @@ export default function HomePage() {
   return (
     <div className="container mx-auto px-4">
       <h1 className="text-3xl font-bold text-center my-4">
-        Welcome to the Dessert Finder!
+        Welcome to งดทานหวานเพราะน้ำตาลแพงมาก!
       </h1>
-      <form onSubmit={handleSearchSubmit} className="max-w-xl mx-auto my-8">
-        <div className="flex items-center border-b border-teal-500 py-2">
-          <input
-            className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-            type="text"
-            placeholder="Search desserts..."
-            aria-label="Search desserts"
-            value={searchTerm}
-            onChange={handleSearchChange}
-          />
-          <button
-            className="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"
-            type="submit"
-          >
-            Search
-          </button>
-        </div>
-      </form>
+      <div className="flex justify-center">
+        <form onSubmit={handleSearchSubmit} className="w-full max-w-xl">
+          <div className="flex items-center border-b border-teal-500 py-2">
+            <input
+              className="appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none text-center"
+              type="text"
+              placeholder="Search desserts..."
+              aria-label="Search desserts"
+              value={searchTerm}
+              onChange={handleSearchChange}
+              style={{ textAlign: "center" }} // Ensure text is centered
+            />
+            <button
+              className="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"
+              type="submit"
+            >
+              Search
+            </button>
+          </div>
+        </form>
+      </div>
       {loading ? (
         <div className="flex justify-center items-center min-h-screen">
           <p className="text-center text-lg">Loading...</p>
@@ -56,8 +60,11 @@ export default function HomePage() {
         <div className="flex justify-center">
           <div className="max-w-6xl p-4">
             {searchResults.map((dessert) => (
-              <div
+              <motion.div
                 key={dessert.id}
+                initial={{ scale: 0.5, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.5 }}
                 className="card bg-base-100 shadow-xl flex flex-col items-center"
               >
                 <figure className="px-8 pt-8 w-full flex justify-center">
@@ -76,10 +83,10 @@ export default function HomePage() {
                     Sugar Content: {dessert.sugarContent}%
                   </p>
                   <div className="card-actions justify-center">
-                    <button className="btn btn-primary">More Info</button>
+                    {/* <button className="btn btn-primar y">More Info</button> */}
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
