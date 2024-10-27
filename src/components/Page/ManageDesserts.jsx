@@ -22,6 +22,8 @@ export default function ManageDesserts() {
   const [sugarContent, setSugarContent] = useState("");
   const [image, setImage] = useState(null);
   const [uploading, setUploading] = useState(false);
+  const [category, setCategory] = useState(""); // สำหรับเก็บประเภทเมนู
+  // สำหรับเก็บประเภทเมนู
 
   const dessertsRef = collection(db, "desserts");
 
@@ -55,19 +57,23 @@ export default function ManageDesserts() {
   };
 
   const addDessert = async () => {
-    if (!newDessert.trim() || !sugarContent.trim() || uploading) return;
+    if (!newDessert.trim() || !sugarContent.trim() || !category || uploading)
+      return;
     setUploading(true);
     const imageUrl = await uploadImage(image);
     await addDoc(dessertsRef, {
       name: newDessert,
       sugarContent: sugarContent,
+      category: category, // บันทึกประเภทเมนูลง Firebase
       imageUrl,
     });
     setUploading(false);
     setNewDessert("");
     setSugarContent("");
+    setCategory(""); // รีเซ็ต category หลังจากเพิ่มข้อมูล
     setImage(null);
   };
+
   const deleteImage = async (imageUrl) => {
     const imageRef = ref(storage, imageUrl);
     try {
@@ -180,6 +186,18 @@ export default function ManageDesserts() {
               className="input input-bordered w-full"
             />
           </div>
+          <div className="mb-4">
+            <select
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              className="select select-bordered w-full"
+            >
+              <option value="">Select Category</option>
+              <option value="ผลไม้">ผลไม้</option>
+              <option value="เครื่องดื่ม">เครื่องดื่ม</option>
+              <option value="ขนม">ขนม</option>
+            </select>
+          </div>
           <input
             type="file"
             onChange={onFileChange}
@@ -202,7 +220,8 @@ export default function ManageDesserts() {
           >
             <div className="flex-1">
               <span className="text-lg text-center font-medium">
-                {dessert.name} - Sugar: {dessert.sugarContent}%
+                {dessert.name} - Sugar: {dessert.sugarContent}% - Category:{" "}
+                {dessert.category}
               </span>
               {dessert.imageUrl && (
                 <img

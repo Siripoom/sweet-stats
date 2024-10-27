@@ -2,23 +2,21 @@ import { Link } from "react-router-dom";
 
 const NavBar = () => {
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar ">
       <div className="flex-1">
-        <Link to="/" className="btn btn-ghost normal-case text-xl">
+        {/* <Link to="/" className="btn btn-ghost normal-case text-xl">
           งดทานหวานเพราะน้ำตาลแพงมาก
-        </Link>
+        </Link> */}
       </div>
       <div className="flex-none">
         <ul className="menu menu-horizontal p-0">
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/manage-desserts">Manage Desserts</Link>
-          </li>
           {/* <li>
-            <Link to="/health-info">Health Info</Link>
+            <Link to="/">Home</Link>
           </li> */}
+          <li>
+            <Link to="/manage-desserts"></Link>
+          </li>
+          <li>{/* <Link to="/">LogIn</Link> */}</li>
         </ul>
       </div>
     </div>

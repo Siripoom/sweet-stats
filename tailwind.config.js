@@ -7,6 +7,6 @@ export default {
   // eslint-disable-next-line no-undef
   plugins: [require("daisyui")],
   daisyui: {
-    themes: ["retro", "dark", "cupcake"],
+    themes: ["retro", "dark", "cupcake", "valentine"],
   },
 };
