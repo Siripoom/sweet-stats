@@ -10,11 +10,14 @@ const NavBar = () => {
       </div>
       <div className="flex-none">
         <ul className="menu menu-horizontal p-0">
-          {/* <li>
+          <li>
             <Link to="/">Home</Link>
-          </li> */}
+          </li>
           <li>
             <Link to="/manage-desserts"></Link>
+          </li>
+          <li>
+            <Link to="/weight">คำนวนน้ำตาล</Link>
           </li>
           <li>{/* <Link to="/">LogIn</Link> */}</li>
         </ul>
