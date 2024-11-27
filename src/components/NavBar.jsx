@@ -2,11 +2,11 @@ import { Link } from "react-router-dom";
 
 const NavBar = () => {
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar ">
       <div className="flex-1">
-        <Link to="/" className="btn btn-ghost normal-case text-xl">
-          Sweet Stats
-        </Link>
+        {/* <Link to="/" className="btn btn-ghost normal-case text-xl">
+          งดทานหวานเพราะน้ำตาลแพงมาก
+        </Link> */}
       </div>
       <div className="flex-none">
         <ul className="menu menu-horizontal p-0">
@@ -14,11 +14,12 @@ const NavBar = () => {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/manage-desserts">Manage Desserts</Link>
+            <Link to="/manage-desserts"></Link>
           </li>
-          {/* <li>
-            <Link to="/health-info">Health Info</Link>
-          </li> */}
+          <li>
+            <Link to="/weight">คำนวนน้ำตาล</Link>
+          </li>
+          <li>{/* <Link to="/">LogIn</Link> */}</li>
         </ul>
       </div>
     </div>
